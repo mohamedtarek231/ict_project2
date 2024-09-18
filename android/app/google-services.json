@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "205665310362",
+    "project_id": "icthub-project-dff3a",
+    "storage_bucket": "icthub-project-dff3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205665310362:android:ebbc3de77cbd2bf422b123",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDP4tqL-vPLNv5FqMlLs-UiYb0OeCBkd2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

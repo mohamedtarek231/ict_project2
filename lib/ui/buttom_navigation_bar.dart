@@ -15,7 +15,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   List ScreenList = [
     const HomeScreen(),
     const ProfileScreen(),
-    SettingScreen(),
+    const SettingScreen(),
   ];
   int currentIndex = 0;
   @override
