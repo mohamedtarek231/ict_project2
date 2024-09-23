@@ -15,7 +15,7 @@ class ProfileScreen extends StatelessWidget {
         future: SignupDataSource.getUserData(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.connectionState == ConnectionState.done) {
             return Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -32,7 +32,7 @@ class ProfileScreen extends StatelessWidget {
                   height: 5,
                 ),
                 CardInfoUser(text: snapshot.data?.name),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 const Text(
@@ -43,7 +43,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 CardInfoUser(text: snapshot.data?.phone.toString()),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 const Text(
@@ -57,7 +57,7 @@ class ProfileScreen extends StatelessWidget {
               ],
             );
           } else {
-            return Text('cant fetch user data');
+            return const Text('cant fetch user data');
           }
         },
       ),

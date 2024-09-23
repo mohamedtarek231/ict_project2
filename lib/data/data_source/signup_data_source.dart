@@ -66,7 +66,7 @@ class SignupDataSource {
   static Future<UserModel> getUserData() async {
     final uid = FirebaseAuth.instance.currentUser?.uid;
     DocumentSnapshot<Map<String, dynamic>> doc =
-        await FirebaseFirestore.instance.collection('user').doc(uid).get();
+        await FirebaseFirestore.instance.collection('users').doc(uid).get();
     return UserModel.fromMap(doc.data() ??
         {
           'name': 'null',

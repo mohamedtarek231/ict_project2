@@ -36,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 200,
                 fit: BoxFit.cover,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               TextFormField(
