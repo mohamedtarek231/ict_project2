@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/data/data_source/signup_data_source.dart';
 import 'package:flutter_application_1/ui/buttom_navigation_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -13,6 +14,8 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -29,6 +32,42 @@ class _SignupScreenState extends State<SignupScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SvgPicture.asset(
+                'assets/Svg/signup.svg',
+                height: 200,
+                fit: BoxFit.cover,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                controller: nameController,
+                decoration: const InputDecoration(
+                    labelText: 'user name', border: OutlineInputBorder()),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'user name is required';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              TextFormField(
+                controller: phoneController,
+                decoration: const InputDecoration(
+                    labelText: 'Phone', border: OutlineInputBorder()),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Phone is required';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(
+                height: 20,
+              ),
               TextFormField(
                 controller: emailController,
                 decoration: const InputDecoration(
@@ -69,9 +108,11 @@ class _SignupScreenState extends State<SignupScreen> {
                       if (formKey.currentState!.validate()) {
                         setState(() {});
                         SignupDataSource.signup(
-                                email: emailController.text,
-                                password: passwordController.text)
-                            .then((v) {
+                          email: emailController.text,
+                          password: passwordController.text,
+                          name: nameController.text,
+                          phone: int.parse(phoneController.text),
+                        ).then((v) {
                           if (v) {
                             Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(

@@ -1,9 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class ProductDataModel {
   final String? title;
   final String? description;
   final String? image;
-  final double? price;
+  final num? price;
 
   ProductDataModel({
     this.title,
@@ -11,4 +10,23 @@ class ProductDataModel {
     this.image,
     this.price,
   });
+  // toMap == toJson
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'title': title,
+      'description': description,
+      'image': image,
+      'price': price,
+    };
+  }
+
+// fromMap == fromJson
+  factory ProductDataModel.fromMap(Map<String, dynamic> map) {
+    return ProductDataModel(
+      title: map['title'],
+      description: map['description'],
+      image: map['image'],
+      price: map['price'],
+    );
+  }
 }

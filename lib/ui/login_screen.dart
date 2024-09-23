@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/data/data_source/login_data_source.dart';
 import 'package:flutter_application_1/ui/buttom_navigation_bar.dart';
 import 'package:flutter_application_1/ui/signup_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -30,6 +31,14 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              SvgPicture.asset(
+                'assets/Svg/login.svg',
+                height: 200,
+                fit: BoxFit.cover,
+              ),
+              SizedBox(
+                height: 20,
+              ),
               TextFormField(
                 controller: emailController,
                 decoration: const InputDecoration(

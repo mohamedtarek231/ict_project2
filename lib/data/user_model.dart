@@ -1,32 +1,35 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class UserModel {
-  String? image;
-  String? name;
-  String? titleJop;
-  int? age;
+  String name;
+  int phone;
+  String email;
+  String password;
+  String uid;
 
   UserModel({
-    this.image,
-    this.name,
-    this.titleJop,
-    this.age,
+    required this.name,
+    required this.phone,
+    required this.email,
+    required this.password,
+    required this.uid,
   });
 
-  static List<UserModel> userModel = [
-    UserModel(
-        image: 'assets/image/person1.jpg',
-        name: 'moe',
-        titleJop: 'programer1',
-        age: 22),
-    UserModel(
-        image: 'assets/image/person2.jpg',
-        name: 'bob',
-        titleJop: 'programer2',
-        age: 27),
-    UserModel(
-        image: 'assets/image/person3.jpg',
-        name: 'sergio',
-        titleJop: 'programer3',
-        age: 25),
-  ];
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'name': name,
+      'phone': phone,
+      'email': email,
+      'password': password,
+      'uid': uid,
+    };
+  }
+
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      name: map['name'] as String,
+      phone: map['phone'] as int,
+      email: map['email'] as String,
+      password: map['password'] as String,
+      uid: map['uid'] as String,
+    );
+  }
 }

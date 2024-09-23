@@ -1,52 +1,66 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/data/user_model.dart';
+import 'package:flutter_application_1/data/data_source/signup_data_source.dart';
+import 'package:flutter_application_1/ui/widgets/card_info_user.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: SafeArea(
-      child: Center(
-        child: SizedBox(
-          height: 500,
-          child: ListView.separated(
-              itemBuilder: (context, index) {
-                return Container(
-                  padding: const EdgeInsets.symmetric(vertical: 15),
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  decoration: BoxDecoration(
-                      color: Colors.green.withOpacity(0.8),
-                      borderRadius: BorderRadius.circular(10)),
-                  child: ListTile(
-                    leading: Container(
-                      width: 70,
-                      height: 70,
-                      clipBehavior: Clip.antiAlias,
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Image.asset(
-                          UserModel.userModel[index].image ??
-                              'assets/image/default image.png',
-                          fit: BoxFit.fill),
-                    ),
-                    title: Text(
-                        UserModel.userModel[index].name ?? 'Write your name'),
-                    subtitle: Text(UserModel.userModel[index].titleJop ??
-                        'Write your Job'),
-                    trailing: Text('age ${UserModel.userModel[index].age}'),
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) => const SizedBox(
-                    height: 20,
-                  ),
-              itemCount: UserModel.userModel.length),
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Profile'),
       ),
-    ));
+      body: FutureBuilder(
+        future: SignupDataSource.getUserData(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.connectionState == ConnectionState.done) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Name',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                CardInfoUser(text: snapshot.data?.name),
+                SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  'Phone',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                CardInfoUser(text: snapshot.data?.phone.toString()),
+                SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  'Email',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                CardInfoUser(text: snapshot.data?.email),
+              ],
+            );
+          } else {
+            return Text('cant fetch user data');
+          }
+        },
+      ),
+    );
   }
 }
